@@ -1,0 +1,14 @@
+{
+  "name": "backend",
+  "private": true,
+  "type": "module",
+  "packageManager": "yarn@4.9.1",
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "dependencies": {
+    "@tryfinch/finch-api": "^6.24.0",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0"
+  }
+}
