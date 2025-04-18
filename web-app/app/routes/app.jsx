@@ -7,6 +7,7 @@ import {
   UserOutlined,
 } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import CreateConnection from '../components/createConnection';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -39,8 +40,7 @@ const App = () => {
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider width={300} style={{padding: 16}} trigger={null} collapsible collapsed={collapsed}>
-        <div className="demo-logo-vertical" />
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
+        <CreateConnection />
       </Sider>
       <Layout style={{ padding: '24px' }}>
         <Content>

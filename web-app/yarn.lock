@@ -839,6 +839,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@faker-js/faker@npm:^9.7.0":
+  version: 9.7.0
+  resolution: "@faker-js/faker@npm:9.7.0"
+  checksum: 10c0/5a95147cbf0ae52909aea18346edb159efefe5e9800048d906317f1ec872c657256b43140f194d1308cb58074e57c619140ee96d26f57623b2957e5e74bbb3b8
+  languageName: node
+  linkType: hard
+
 "@isaacs/cliui@npm:^8.0.2":
   version: 8.0.2
   resolution: "@isaacs/cliui@npm:8.0.2"
@@ -1561,6 +1568,15 @@ __metadata:
   peerDependencies:
     vite: ^5.2.0 || ^6
   checksum: 10c0/21cbc6d3069923bbbcca9fb9f851c32abde47f124eefcfb246e3870d73d3e56909118b3fdf1619b7f74fa8d45c562811a22237409b24d083b4d02a98bcafc3b1
+  languageName: node
+  linkType: hard
+
+"@tryfinch/react-connect@npm:^3.15.0":
+  version: 3.15.0
+  resolution: "@tryfinch/react-connect@npm:3.15.0"
+  peerDependencies:
+    react: ">=16.9.0"
+  checksum: 10c0/a14f1af40e1e39772415aa9da599a0dfd81a1638b7d68dc936e0904f2dd8ce65141a817be026787af3901698e78b5dee3fb52730252103776f772637a0f893cf
   languageName: node
   linkType: hard
 
@@ -4869,11 +4885,13 @@ __metadata:
   resolution: "web-app@workspace:."
   dependencies:
     "@ant-design/icons": "npm:^6.0.0"
+    "@faker-js/faker": "npm:^9.7.0"
     "@react-router/dev": "npm:^7.5.0"
     "@react-router/node": "npm:^7.5.0"
     "@react-router/serve": "npm:^7.5.0"
     "@reduxjs/toolkit": "npm:^2.7.0"
     "@tailwindcss/vite": "npm:^4.0.0"
+    "@tryfinch/react-connect": "npm:^3.15.0"
     antd: "npm:^5.24.7"
     isbot: "npm:^5.1.17"
     lodash: "npm:^4.17.21"

@@ -30,6 +30,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@tryfinch/finch-api", "npm:6.24.0"],\
           ["backend", "workspace:."],\
+          ["cors", "npm:2.8.5"],\
           ["dotenv", "npm:16.5.0"],\
           ["express", "npm:5.1.0"]\
         ],\
@@ -137,6 +138,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@tryfinch/finch-api", "npm:6.24.0"],\
           ["backend", "workspace:."],\
+          ["cors", "npm:2.8.5"],\
           ["dotenv", "npm:16.5.0"],\
           ["express", "npm:5.1.0"]\
         ],\
@@ -235,6 +237,17 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../../.yarn/berry/cache/cookie-signature-npm-1.2.2-8474a8ac29-10c0.zip/node_modules/cookie-signature/",\
         "packageDependencies": [\
           ["cookie-signature", "npm:1.2.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["cors", [\
+      ["npm:2.8.5", {\
+        "packageLocation": "../../../../.yarn/berry/cache/cors-npm-2.8.5-c9935a2d12-10c0.zip/node_modules/cors/",\
+        "packageDependencies": [\
+          ["cors", "npm:2.8.5"],\
+          ["object-assign", "npm:4.1.1"],\
+          ["vary", "npm:1.1.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -734,6 +747,15 @@ const RAW_RUNTIME_STATE =
         "packagePeers": [\
           "@types/encoding",\
           "encoding"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["object-assign", [\
+      ["npm:4.1.1", {\
+        "packageLocation": "../../../../.yarn/berry/cache/object-assign-npm-4.1.1-1004ad6dec-10c0.zip/node_modules/object-assign/",\
+        "packageDependencies": [\
+          ["object-assign", "npm:4.1.1"]\
         ],\
         "linkType": "HARD"\
       }]\
