@@ -3,10 +3,23 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000' }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: 'http://localhost:3000',
+    prepareHeaders: (headers, { getState }) => {
+      // Access the accessToken from the Redux state
+      const accessToken = getState().session?.customer?.access_token;
+
+      console.log('Access token:', accessToken);
+      if (accessToken) {
+        headers.set('x-finch-access-token', accessToken);
+      }
+
+      return headers;
+    },
+  }),
   endpoints: (builder) => ({
     createConnectSession: builder.mutation({
-      query: ({customer}) => ({
+      query: ({ customer }) => ({
         url: '/finch/connect/sessions',
         method: 'POST',
         body: {
@@ -15,7 +28,7 @@ export const apiSlice = createApi({
       }),
     }),
     createAccessToken: builder.mutation({
-      query: ({code}) => ({
+      query: ({ code }) => ({
         url: '/finch/accessTokens/create',
         method: 'POST',
         body: {
@@ -23,7 +36,13 @@ export const apiSlice = createApi({
         },
       }),
     }),
+    getCompany: builder.query({
+      query: () => ({
+        url: '/finch/hris/company/retrieve',
+        method: 'GET',
+      }),
+    }),
   }),
 });
 
-export const { useCreateConnectSessionMutation, useCreateAccessTokenMutation } = apiSlice;
+export const { useCreateConnectSessionMutation, useCreateAccessTokenMutation, useGetCompanyQuery } = apiSlice;

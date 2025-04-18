@@ -8,6 +8,7 @@ import {
 } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 import CreateConnection from '../components/createConnection';
+import Company from '../components/company';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -41,6 +42,7 @@ const App = () => {
     <Layout style={{ minHeight: '100vh' }}>
       <Sider width={300} style={{padding: 16}} trigger={null} collapsible collapsed={collapsed}>
         <CreateConnection />
+        <Company />
       </Sider>
       <Layout style={{ padding: '24px' }}>
         <Content>

@@ -11,15 +11,15 @@ const app = express();
 app.use(json());
 app.use(cors());
 
-const finch = new Finch({
-  clientId: process.env.FINCH_CLIENT_ID,
-  clientSecret: process.env.FINCH_CLIENT_SECRET,
-});
-
 // Routes
 app.post('/finch/connect/sessions', async (req, res) => {
   try {
-    const _createConnectSessionResponse = await finch.connect.sessions.new({
+    const _client = new Finch({
+      clientId: process.env.FINCH_CLIENT_ID,
+      clientSecret: process.env.FINCH_CLIENT_SECRET,
+    });
+
+    const _createConnectSessionResponse = await _client.connect.sessions.new({
       products: ['company', 'directory', 'individual', 'employment'],
       customer_id: req.body.customer.customer_id,
       customer_name: req.body.customer.customer_name,
@@ -36,8 +36,13 @@ app.post('/finch/connect/sessions', async (req, res) => {
 
 app.post('/finch/accessTokens/create', async (req, res) => {
   try {
+    const _client = new Finch({
+      clientId: process.env.FINCH_CLIENT_ID,
+      clientSecret: process.env.FINCH_CLIENT_SECRET,
+    });
+
     const { code } = req.body;
-    const _createAccessTokenResponse = await finch.accessTokens.create({
+    const _createAccessTokenResponse = await _client.accessTokens.create({
       code,
     });
     console.log('Access token created:', _createAccessTokenResponse);
@@ -45,6 +50,24 @@ app.post('/finch/accessTokens/create', async (req, res) => {
   } catch (error) {
     console.error('Error creating access token:', error);
     res.status(500).json({ error: 'Failed to create access token' });
+  }
+});
+
+app.get('/finch/hris/company/retrieve', async (req, res) => {
+  try {
+    const _accessToken = req.get('x-finch-access-token');
+
+    const _client = new Finch({
+      clientId: null,
+      clientSecret: null,
+      accessToken: _accessToken,
+    })
+    const _retrieveCompanyResponse = await _client.hris.company.retrieve();
+    console.log('Company retrieved:', _retrieveCompanyResponse);
+    res.status(200).json(_retrieveCompanyResponse);
+  } catch (error) {
+    console.error('Error retrieving company:', error);
+    res.status(500).json({ error: 'Failed to retrieve company' });
   }
 });
 
