@@ -42,6 +42,12 @@ export const apiSlice = createApi({
         method: 'GET',
       }),
     }),
+    getDirectory: builder.query({
+      query: () => ({
+        url: '/finch/hris/directory/list',
+        method: 'GET',
+      }),
+    }),
   }),
 });
 

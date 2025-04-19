@@ -71,6 +71,24 @@ app.get('/finch/hris/company/retrieve', async (req, res) => {
   }
 });
 
+app.get('/finch/hris/directory/list', async (req, res) => {
+  try {
+    const _accessToken = req.get('x-finch-access-token');
+
+    const _client = new Finch({
+      clientId: null,
+      clientSecret: null,
+      accessToken: _accessToken,
+    })
+    const _listDirectoryResponse = await _client.hris.directory.list();
+    console.log('Company retrieved:', _listDirectoryResponse);
+    res.status(200).json(_listDirectoryResponse);
+  } catch (error) {
+    console.error('Error retrieving company:', error);
+    res.status(500).json({ error: 'Failed to retrieve company' });
+  }
+});
+
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
