@@ -81,10 +81,10 @@ app.get('/finch/hris/directory/list', async (req, res) => {
       accessToken: _accessToken,
     })
     const _listDirectoryResponse = await _client.hris.directory.list();
-    console.log('Company retrieved:', _listDirectoryResponse);
+    console.log('Directory retrieved:', _listDirectoryResponse);
     res.status(200).json(_listDirectoryResponse);
   } catch (error) {
-    console.error('Error retrieving company:', error);
+    console.error('Error retrieving directory:', error);
     res.status(500).json({ error: 'Failed to retrieve directory' });
   }
 });
@@ -103,7 +103,7 @@ app.get('/finch/hris/individuals/:individualId', async (req, res) => {
     console.log('Individual retrieved:', _individuals);
     res.status(200).json(_individuals);
   } catch (error) {
-    console.error('Error retrieving company:', error);
+    console.error('Error retrieving individual:', error);
     res.status(500).json({ error: 'Failed to retrieve individual' });
   }
 });
@@ -122,7 +122,7 @@ app.get('/finch/hris/employments/:individualId', async (req, res) => {
     console.log('Employments retrieved:', _employments);
     res.status(200).json(_employments);
   } catch (error) {
-    console.error('Error retrieving company:', error);
+    console.error('Error retrieving employment:', error);
     res.status(500).json({ error: 'Failed to retrieve employment' });
   }
 });
