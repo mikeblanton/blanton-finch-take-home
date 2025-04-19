@@ -15,15 +15,11 @@ const CreateConnection = () => {
   const [createConnectSession] = useCreateConnectSessionMutation();
   const [createAccessToken] = useCreateAccessTokenMutation();
 
-  console.log('Customer:', customer);
-
   // Define the callback functions outside of _handleCreateSession
   const _onSuccess = ({code}) => {
-    console.log('Creating access token:', code);
     createAccessToken({code})
       .unwrap()
       .then((response) => {
-        console.log('Access token created:', response);
         dispatch(setCustomer({customer: response}));
       })
       .catch((error) => {
@@ -37,7 +33,6 @@ const CreateConnection = () => {
     setIsProcessing(false);
   };
   const _onClose = () => {
-    console.log('Finch Connect closed');
     setIsProcessing(false);
   };
 
@@ -60,7 +55,6 @@ const CreateConnection = () => {
         customer_id,
       },
     });
-    console.log('Session created:', _createConnectSessionResponse);
     if (_createConnectSessionResponse.error) {
       console.error('Error creating session:', _createConnectSessionResponse.error);
       setIsProcessing(false);

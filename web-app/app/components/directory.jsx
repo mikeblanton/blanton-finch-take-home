@@ -15,15 +15,12 @@ const Directory = () => {
   const {data, isLoading, error} = useGetDirectoryQuery({}, {skip, refetchOnMountOrArgChange: true});
 
   useEffect(() => {
-    console.log('Setting skip', _.isNil(_.get(customer, 'access_token')))
     setSkip(_.isNil(_.get(customer, 'access_token')));
   }, [customer]);
 
   if (_.isNil(_.get(customer, 'access_token'))) {
     return;
   }
-
-  console.log('Data loaded', {data});
 
   return (
     <React.Fragment>
@@ -42,7 +39,6 @@ const Directory = () => {
               label: _.join([item.first_name, item.middle_name, item.last_name], ' '),
             }))}
             onSelect={(item) => {
-              console.log('Selected item:', item);
               dispatch(setSelectedEmployee({selectedEmployee: item.key}));
             }}
           />

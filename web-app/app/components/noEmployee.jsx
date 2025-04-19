@@ -8,8 +8,6 @@ const {Text} = Typography;
 const NoEmployee = () => {
   const {customer, selectedEmployee} = useSelector((state) => state.session);
 
-  console.log('NoEmployee', {customer, selectedEmployee});
-
   if (_.isNil(customer) || !_.isNil(selectedEmployee)) {
     return null;
   }

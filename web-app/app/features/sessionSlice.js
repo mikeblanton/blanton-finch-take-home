@@ -16,7 +16,6 @@ const sessionSlice = createSlice({
       state.customer = null;
     },
     setSelectedEmployee: (state, action) => {
-      console.log('Setting selected employee:', action.payload.selectedEmployee);
       state.selectedEmployee = action.payload.selectedEmployee;
     },
   },

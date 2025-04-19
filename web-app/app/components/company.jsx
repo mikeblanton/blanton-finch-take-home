@@ -49,7 +49,6 @@ const Company = () => {
   }
 
   useEffect(() => {
-    console.log('Data loaded', {data});
     if (data) {
       const _items = [];
       _items.push({
