@@ -9,7 +9,7 @@ import {Info} from 'lucide-react';
 const {Text, Title} = Typography;
 
 const Directory = () => {
-  const {customer} = useSelector((state) => state.session);
+  const {customer, selectedEmployee} = useSelector((state) => state.session);
   const dispatch = useDispatch();
   const [skip, setSkip] = useState(true);
   const {data, isLoading, error} = useGetDirectoryQuery({skip});
@@ -35,6 +35,7 @@ const Directory = () => {
             theme='dark'
             mode='inline'
             split={true}
+            defaultSelectedKeys={[selectedEmployee]}
             items={_.map(_.get(data, 'individuals', []), (item) => ({
               key: item.id,
               label: _.join([item.first_name, item.middle_name, item.last_name], ' '),
