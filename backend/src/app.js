@@ -30,7 +30,7 @@ app.post('/finch/connect/sessions', async (req, res) => {
     res.status(200).json(_createConnectSessionResponse);  
   } catch (error) {
     console.error('Error creating session:', error);
-    res.status(500).json({ error: 'Failed to create session' });
+    res.status(500).json(error);
   }
 });
 
@@ -49,7 +49,7 @@ app.post('/finch/accessTokens/create', async (req, res) => {
     res.status(200).json(_createAccessTokenResponse);
   } catch (error) {
     console.error('Error creating access token:', error);
-    res.status(500).json({ error: 'Failed to create access token' });
+    res.status(500).json(error);
   }
 });
 
@@ -67,7 +67,7 @@ app.get('/finch/hris/company/retrieve', async (req, res) => {
     res.status(200).json(_retrieveCompanyResponse);
   } catch (error) {
     console.error('Error retrieving company:', error);
-    res.status(500).json({ error: 'Failed to retrieve company' });
+    res.status(500).json(error);
   }
 });
 
@@ -85,7 +85,7 @@ app.get('/finch/hris/directory/list', async (req, res) => {
     res.status(200).json(_listDirectoryResponse);
   } catch (error) {
     console.error('Error retrieving directory:', error);
-    res.status(500).json({ error: 'Failed to retrieve directory' });
+    res.status(500).json(error);
   }
 });
 
@@ -104,7 +104,7 @@ app.get('/finch/hris/individuals/:individualId', async (req, res) => {
     res.status(200).json(_individuals);
   } catch (error) {
     console.error('Error retrieving individual:', error);
-    res.status(500).json({ error: 'Failed to retrieve individual' });
+    res.status(500).json(error);
   }
 });
 
@@ -123,7 +123,7 @@ app.get('/finch/hris/employments/:individualId', async (req, res) => {
     res.status(200).json(_employments);
   } catch (error) {
     console.error('Error retrieving employment:', error);
-    res.status(500).json({ error: 'Failed to retrieve employment' });
+    res.status(500).json(error);
   }
 });
 
