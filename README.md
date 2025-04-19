@@ -88,5 +88,5 @@ The application will be available at `http://localhost:5173`.
 ## Notes
 
 - Ensure the **Backend** is running before using the **Web App**, as the Web App depends on the API endpoints provided by the Backend.
-- We are storing the Finch `client_secret` in a `.env` file. This would normally be stored securely in your backend.
+- We are storing the Finch `client_secret` in a `.env` file. ***This would normally be stored securely in your backend.***
 - We are storing the Finch `access_token` in the Browser session and passing it via the API request in the `x-finch-access-token` header. This would normally be stored securely in your backend once it is created and not returned to your front end.
