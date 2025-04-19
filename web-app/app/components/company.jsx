@@ -11,11 +11,11 @@ const Company = () => {
   const {customer} = useSelector((state) => state.session);
   const [skip, setSkip] = useState(true);
   const [isCompanyInfoModalOpen, setIsCompanyInfoModalOpen] = useState(false);
-  const {data, isLoading, error} = useGetCompanyQuery({skip});
+  const {data, isLoading, error} = useGetCompanyQuery({}, {skip, refetchOnMountOrArgChange: true});
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    setSkip(!_.isNil(_.get(customer, 'access_token')));
+    setSkip(_.isNil(_.get(customer, 'access_token')));
   }, [customer]);
 
   const _getDepartments = (departments) => {

@@ -12,10 +12,11 @@ const Directory = () => {
   const {customer, selectedEmployee} = useSelector((state) => state.session);
   const dispatch = useDispatch();
   const [skip, setSkip] = useState(true);
-  const {data, isLoading, error} = useGetDirectoryQuery({skip});
+  const {data, isLoading, error} = useGetDirectoryQuery({}, {skip, refetchOnMountOrArgChange: true});
 
   useEffect(() => {
-    setSkip(!_.isNil(_.get(customer, 'access_token')));
+    console.log('Setting skip', _.isNil(_.get(customer, 'access_token')))
+    setSkip(_.isNil(_.get(customer, 'access_token')));
   }, [customer]);
 
   if (_.isNil(_.get(customer, 'access_token'))) {

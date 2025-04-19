@@ -85,7 +85,7 @@ app.get('/finch/hris/directory/list', async (req, res) => {
     res.status(200).json(_listDirectoryResponse);
   } catch (error) {
     console.error('Error retrieving company:', error);
-    res.status(500).json({ error: 'Failed to retrieve company' });
+    res.status(500).json({ error: 'Failed to retrieve directory' });
   }
 });
 
@@ -104,7 +104,26 @@ app.get('/finch/hris/individuals/:individualId', async (req, res) => {
     res.status(200).json(_individuals);
   } catch (error) {
     console.error('Error retrieving company:', error);
-    res.status(500).json({ error: 'Failed to retrieve company' });
+    res.status(500).json({ error: 'Failed to retrieve individual' });
+  }
+});
+
+app.get('/finch/hris/employments/:individualId', async (req, res) => {
+  try {
+    const _accessToken = req.get('x-finch-access-token');
+
+    const _client = new Finch({
+      clientId: null,
+      clientSecret: null,
+      accessToken: _accessToken,
+    })
+    console.log('Loading individual:', req.params.individualId, _accessToken);
+    const _employments = await _client.hris.employments.retrieveMany({requests: [{individual_id: req.params.individualId}]});
+    console.log('Employments retrieved:', _employments);
+    res.status(200).json(_employments);
+  } catch (error) {
+    console.error('Error retrieving company:', error);
+    res.status(500).json({ error: 'Failed to retrieve employment' });
   }
 });
 

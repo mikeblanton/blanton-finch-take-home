@@ -54,7 +54,13 @@ export const apiSlice = createApi({
         method: 'GET',
       }),
     }),
+    getEmployment: builder.query({
+      query: ({individualId}) => ({
+        url: `/finch/hris/employments/${individualId}`,
+        method: 'GET',
+      }),
+    }),
   }),
 });
 
-export const { useCreateConnectSessionMutation, useCreateAccessTokenMutation, useGetCompanyQuery, useGetDirectoryQuery, useGetIndividualQuery } = apiSlice;
+export const { useCreateConnectSessionMutation, useCreateAccessTokenMutation, useGetCompanyQuery, useGetDirectoryQuery, useGetIndividualQuery, useGetEmploymentQuery } = apiSlice;
