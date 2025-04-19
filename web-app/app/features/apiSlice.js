@@ -51,4 +51,4 @@ export const apiSlice = createApi({
   }),
 });
 
-export const { useCreateConnectSessionMutation, useCreateAccessTokenMutation, useGetCompanyQuery } = apiSlice;
+export const { useCreateConnectSessionMutation, useCreateAccessTokenMutation, useGetCompanyQuery, useGetDirectoryQuery } = apiSlice;

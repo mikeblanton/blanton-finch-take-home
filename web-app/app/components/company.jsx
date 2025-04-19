@@ -105,7 +105,7 @@ const Company = () => {
       <Flex vertical gap={'medium'}>
         <Title style={{color: 'white'}} level={5}>Company Information</Title>
         {isLoading && <Spin size='small' />}
-        {error && <Text>Error: {error.message}</Text>}
+        {error && <Text style={{color: 'white'}}>Error: {_.get(error, 'data.error')} ({_.get(error, 'status')})</Text>}
         {data && (
           <Flex justify={'space-between'} align={'center'}>
             <Flex gap={'small'}>
