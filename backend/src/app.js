@@ -11,7 +11,6 @@ const app = express();
 app.use(json());
 app.use(cors());
 
-// Routes
 app.post('/finch/connect/sessions', async (req, res) => {
   try {
     const _client = new Finch({
@@ -98,8 +97,11 @@ app.get('/finch/hris/individuals/:individualId', async (req, res) => {
       clientSecret: null,
       accessToken: _accessToken,
     })
-    console.log('Loading individual:', req.params.individualId, _accessToken);
-    const _individuals = await _client.hris.individuals.retrieveMany({requests: [{individual_id: req.params.individualId}]});
+    const _individuals = await _client.hris.individuals.retrieveMany({
+      requests: [
+        {individual_id: req.params.individualId}
+      ],
+    });
     console.log('Individual retrieved:', _individuals);
     res.status(200).json(_individuals);
   } catch (error) {
@@ -117,8 +119,11 @@ app.get('/finch/hris/employments/:individualId', async (req, res) => {
       clientSecret: null,
       accessToken: _accessToken,
     })
-    console.log('Loading individual:', req.params.individualId, _accessToken);
-    const _employments = await _client.hris.employments.retrieveMany({requests: [{individual_id: req.params.individualId}]});
+    const _employments = await _client.hris.employments.retrieveMany({
+      requests: [
+        {individual_id: req.params.individualId}
+      ],
+    });
     console.log('Employments retrieved:', _employments);
     res.status(200).json(_employments);
   } catch (error) {
