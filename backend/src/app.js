@@ -44,7 +44,6 @@ app.post('/finch/accessTokens/create', async (req, res) => {
     const _createAccessTokenResponse = await _client.accessTokens.create({
       code,
     });
-    console.log('Access token created:', _createAccessTokenResponse);
     res.status(200).json(_createAccessTokenResponse);
   } catch (error) {
     console.error('Error creating access token:', error);
