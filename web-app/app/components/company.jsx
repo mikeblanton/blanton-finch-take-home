@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
-import {Flex, Typography, Button, Modal, Descriptions, Spin} from 'antd';
+import {Flex, Typography, Button, Modal, Descriptions, Spin, Alert} from 'antd';
 import { useGetCompanyQuery } from "../features/apiSlice";
 import _ from "lodash";
 import {Info} from 'lucide-react';
@@ -97,6 +97,34 @@ const Company = () => {
 
   if (_.isNil(_.get(customer, 'access_token'))) {
     return;
+  }
+
+  if (error) {
+    if (_.get(error, 'data.name') === 'not_implemented_error') {
+      return (
+        <Flex vertical gap={'medium'}>
+          <Title style={{color: 'white'}} level={5}>Company Directory</Title>
+          <Alert
+            type={'info'}
+            showIcon
+            message={'Endpoint not implemented'}
+            description={'This endpoint has not been implemented. Please check back later.'}
+          />
+        </Flex>
+      )
+    }
+
+    return (
+      <Flex vertical gap={'medium'}>
+        <Title style={{color: 'white'}} level={5}>Company Information</Title>
+        <Alert
+          type={'error'}
+          showIcon
+          message={_.startCase(_.get(error, 'data.name'))}
+          description={_.get(error, 'data.message')}
+        />
+      </Flex>
+    )
   }
 
   return (

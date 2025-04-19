@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
-import {Typography, Tabs, Flex, Spin, Descriptions} from 'antd';
+import {Typography, Tabs, Flex, Spin, Descriptions, Alert} from 'antd';
 import { useGetIndividualQuery, useGetEmploymentQuery } from '../features/apiSlice';
 import _ from 'lodash';
 
@@ -56,6 +56,7 @@ const IndividualInformation = () => {
   }
 
   const individual = _.get(data, 'responses[0].body', {});
+  const code = _.get(data, 'responses[0].code', null);
   const items = [
     {
       key: '1',
@@ -108,6 +109,42 @@ const IndividualInformation = () => {
       children: _getResidence(_.get(individual, 'residence', null))
     }
   ]
+
+  if (error) {
+    if (_.get(error, 'data.name') === 'not_implemented_error') {
+      return (
+        <Flex vertical gap={'medium'}>
+          <Title style={{color: 'white'}} level={5}>Company Directory</Title>
+          <Alert
+            type={'info'}
+            showIcon
+            message={'Endpoint not implemented'}
+            description={'This endpoint has not been implemented. Please check back later.'}
+          />
+        </Flex>
+      )
+    }
+    
+    return (
+      <Alert
+        type={'error'}
+        showIcon
+        message={_.startCase(_.get(error, 'data.name'))}
+        description={_.get(error, 'data.message')}
+      />
+    )
+  }
+
+  if (code !== 200) {
+    return (
+      <Alert
+        type={'error'}
+        showIcon
+        message={_.startCase(_.get(data, 'responses[0].body.finch_code'))}
+        description={_.get(data, 'responses[0].body.message')}
+      />
+    )
+  }
 
   return (
     <Descriptions items={items} />
@@ -164,6 +201,7 @@ const EmploymentInformation = () => {
   }
 
   const employment = _.get(data, 'responses[0].body', {});
+  const code = _.get(data, 'responses[0].code', null);
   const items = [
     {
       key: '1',
@@ -256,6 +294,30 @@ const EmploymentInformation = () => {
       children: <Text>{_.get(employment, 'source_id')}</Text>
     }
   ]
+
+  console.log('Error', {error});
+
+  if (error) {
+    return (
+      <Alert
+        type={'error'}
+        showIcon
+        message={_.startCase(_.get(error, 'data.name'))}
+        description={_.get(error, 'data.message')}
+      />
+    )
+  }
+
+  if (code !== 200) {
+    return (
+      <Alert
+        type={'error'}
+        showIcon
+        message={_.startCase(_.get(data, 'responses[0].body.finch_code'))}
+        description={_.get(data, 'responses[0].body.message')}
+      />
+    )
+  }
 
   return (
     <Descriptions items={items} />

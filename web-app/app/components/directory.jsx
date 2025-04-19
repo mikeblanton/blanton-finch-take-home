@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {Flex, Typography, List, Spin, Menu, Divider} from 'antd';
+import {Flex, Typography, List, Spin, Menu, Divider, Alert} from 'antd';
 import { useGetCompanyQuery, useGetDirectoryQuery } from "../features/apiSlice";
 import { setSelectedEmployee } from '../features/sessionSlice';
 import _ from 'lodash';
@@ -20,6 +20,34 @@ const Directory = () => {
 
   if (_.isNil(_.get(customer, 'access_token'))) {
     return;
+  }
+
+  if (error) {
+    if (_.get(error, 'data.name') === 'not_implemented_error') {
+      return (
+        <Flex vertical gap={'medium'}>
+          <Title style={{color: 'white'}} level={5}>Company Directory</Title>
+          <Alert
+            type={'info'}
+            showIcon
+            message={'Endpoint not implemented'}
+            description={'This endpoint has not been implemented. Please check back later.'}
+          />
+        </Flex>
+      )
+    }
+
+    return (
+      <Flex vertical gap={'medium'}>
+        <Title style={{color: 'white'}} level={5}>Company Directory</Title>
+        <Alert
+          type={'error'}
+          showIcon
+          message={_.startCase(_.get(error, 'data.name'))}
+          description={_.get(error, 'data.message')}
+        />
+      </Flex>
+    )
   }
 
   return (

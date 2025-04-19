@@ -26,7 +26,7 @@ app.post('/finch/connect/sessions', async (req, res) => {
       customer_email: req.body.customer.customer_email,
       sandbox: 'finch',
     });
-    console.log('Session created:', _createConnectSessionResponse);
+    console.log('Session created:', {_createConnectSessionResponse, customer: req.body});
     res.status(200).json(_createConnectSessionResponse);  
   } catch (error) {
     console.error('Error creating session:', error);
