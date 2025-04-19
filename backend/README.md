@@ -14,8 +14,8 @@ Ensure you have the following installed:
 
 Copy the `.env-template` file to `.env`. Replace the values with your own.
 
-* `CLIENT_ID` - Your `client_id` from Finch
-* `CLIENT_SECRET` - Your `client_secret` from Finch. ***This would normally be stored securely in your backend***
+* `FINCH_CLIENT_ID` - Your `client_id` from Finch
+* `FINC_CLIENT_SECRET` - Your `client_secret` from Finch. ***This would normally be stored securely in your backend***
 
 ### Installation
 
