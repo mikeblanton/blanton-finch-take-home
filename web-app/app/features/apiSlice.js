@@ -48,7 +48,13 @@ export const apiSlice = createApi({
         method: 'GET',
       }),
     }),
+    getIndividual: builder.query({
+      query: ({individualId}) => ({
+        url: `/finch/hris/individuals/${individualId}`,
+        method: 'GET',
+      }),
+    }),
   }),
 });
 
-export const { useCreateConnectSessionMutation, useCreateAccessTokenMutation, useGetCompanyQuery, useGetDirectoryQuery } = apiSlice;
+export const { useCreateConnectSessionMutation, useCreateAccessTokenMutation, useGetCompanyQuery, useGetDirectoryQuery, useGetIndividualQuery } = apiSlice;

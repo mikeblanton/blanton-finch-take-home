@@ -98,7 +98,8 @@ app.get('/finch/hris/individuals/:individualId', async (req, res) => {
       clientSecret: null,
       accessToken: _accessToken,
     })
-    const _individuals = await _client.hris.individuals.retrieveMany([{individal_id: req.params.individualId}]);
+    console.log('Loading individual:', req.params.individualId, _accessToken);
+    const _individuals = await _client.hris.individuals.retrieveMany({requests: [{individual_id: req.params.individualId}]});
     console.log('Individual retrieved:', _individuals);
     res.status(200).json(_individuals);
   } catch (error) {
