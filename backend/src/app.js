@@ -89,6 +89,24 @@ app.get('/finch/hris/directory/list', async (req, res) => {
   }
 });
 
+app.get('/finch/hris/individuals/:individualId', async (req, res) => {
+  try {
+    const _accessToken = req.get('x-finch-access-token');
+
+    const _client = new Finch({
+      clientId: null,
+      clientSecret: null,
+      accessToken: _accessToken,
+    })
+    const _individuals = await _client.hris.individuals.retrieveMany([{individal_id: req.params.individualId}]);
+    console.log('Individual retrieved:', _individuals);
+    res.status(200).json(_individuals);
+  } catch (error) {
+    console.error('Error retrieving company:', error);
+    res.status(500).json({ error: 'Failed to retrieve company' });
+  }
+});
+
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

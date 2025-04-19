@@ -5,6 +5,7 @@ import Company from '../components/company';
 import Directory from '../components/directory';
 import NoData from '../components/noCustomer';
 import NoEmployee from '../components/noEmployee';
+import Employee from '../components/employee';
 
 const { Content, Sider } = Layout;
 const {Text, Title} = Typography;
@@ -27,6 +28,7 @@ const App = () => {
           <Flex style={{height: 'calc(100vh - 48px)', background: colorBgContainer, borderRadius: borderRadiusLG, padding: 24}}>
             <NoData />
             <NoEmployee />
+            <Employee />
           </Flex>
         </Content>
       </Layout>
