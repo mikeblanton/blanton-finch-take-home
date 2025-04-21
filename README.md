@@ -4,6 +4,10 @@ This repository contains two applications: a **Backend** built with Express.js a
 
 ---
 
+> ***NOTE:*** This app requires Node 20 or higher.
+
+---
+
 ## Backend
 
 ### Prerequisites
